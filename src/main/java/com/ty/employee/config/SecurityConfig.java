@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -21,13 +22,8 @@ import com.ty.employee.service.UserService;
 @EnableMethodSecurity(prePostEnabled = false, securedEnabled = true)
 public class SecurityConfig {
 
-//    private final PersonDetailsService personDetailsService;
-//
-//    @Autowired
-//    public SecurityConfig(PersonDetailsService personDetailsService) {
-//        this.personDetailsService = personDetailsService;
-//    }
-//
+ 
+
 	
 	   @Autowired
 	    private UserService userService;
@@ -45,24 +41,25 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
-//
+    
     @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
         .authorizeHttpRequests(authorizeRequests ->
             authorizeRequests
-                .requestMatchers("/register**", "/js/**", "/css/**", "/img/**").permitAll()
+                .requestMatchers("/home","/register**", "/js/**", "/css/**", "/img/**").permitAll()
         )
         .formLogin(formLogin ->
             formLogin
                 .loginPage("/login")
                 .permitAll() // Allow access to login page
-                .defaultSuccessUrl("/user") // Redirect to this URL on successful login
+                .defaultSuccessUrl("/home") // Redirect to this URL on successful login
                 .failureUrl("/login?error")
         )
         .logout(logout ->

@@ -7,20 +7,23 @@
 </head>
 
 <body> 
-				 <ul class="nav nav-pills nav-fill">
-		  <li class="nav-item">
-		    <a class="nav-link active" aria-current="page" href="#">Active</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Much longer nav link</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" href="#">Link</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-		  </li>
-		</ul>
+				<ul class="nav nav-pills nav-fill">
+		<li class="nav-item">
+			<a class="nav-link active" aria-current="page" href="/" >Active</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/"  th:href="@{/register}">Sign In</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/"  th:href="@{/login}">login</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="/"  th:href="@{/home}">Home</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link disabled" aria-disabled="true">Disabled</a>
+		</li>
+	</ul>
 		  
     <div class="container">
         <h2>Registration Form</h2>
@@ -52,7 +55,7 @@
 
             <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Register</button>
-            <span>already Register? Click here<a href="/" th:href="@{/login}"></span>
+            <span>already Register?  <a href="/" th:href="@{/login}">Click here</span>
         </form>
     </div>
 
